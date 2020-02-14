@@ -1,19 +1,18 @@
 # Session1 kata module
 
+def format_row(length, value, on, off):
+    result = ''
+    for i in range(0, value):
+        result = result + on
+    for i in range(value, length):
+        result = result + off
+    return result
+
 def first_row(seconds):
-    if(seconds %2)==0:
-        return 'Y'
-    else:
-        return 'O'
+    return format_row(1, seconds % 2, 'O', 'Y')
 
 def second_row(hours):
-    if (hours < 5):
-        return 'OOOO'
-    elif (hours < 10):
-        return 'ROOO'
-    elif (hours < 15):
-        return 'RROO'
-    elif (hours < 20):
-        return 'RRRO'
-    else:
-        return 'RRRR'
+    return format_row(4, int(hours / 5), 'R', 'O')
+
+def third_row(hours):
+    return format_row(4, hours % 5, 'R', 'O')
