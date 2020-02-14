@@ -6,5 +6,14 @@ def first_row(seconds):
     else:
         return 'O'
 
-
-
+def second_row(hours):
+    if (hours < 5):
+        return 'OOOO'
+    elif (hours < 10):
+        return 'ROOO'
+    elif (hours < 15):
+        return 'RROO'
+    elif (hours < 20):
+        return 'RRRO'
+    else:
+        return 'RRRR'
