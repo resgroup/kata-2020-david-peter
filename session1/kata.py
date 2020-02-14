@@ -1,4 +1,10 @@
 # Session1 kata module
 
 def first_row(seconds):
-    return 'O'
+    if(seconds %2)==0:
+        return 'Y'
+    else:
+        return 'O'
+
+
+
