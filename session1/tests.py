@@ -31,5 +31,25 @@ class KataTests(unittest.TestCase):
         for hours in range(20,24):
             self.assertEqual('RRRR', kata.second_row(hours))
 
+    def test_third_row_all_off(self):
+        for hours in range(0, 24, 5):
+            self.assertEqual('OOOO', kata.third_row(hours))
+
+    def test_third_row_one_on(self):
+        for hours in range(1, 24, 5):
+            self.assertEqual('ROOO', kata.third_row(hours))
+
+    def test_third_row_two_on(self):
+        for hours in range(2, 24, 5):
+            self.assertEqual('RROO', kata.third_row(hours))
+
+    def test_third_row_three_on(self):
+        for hours in range(3, 24, 5):
+            self.assertEqual('RRRO', kata.third_row(hours))
+
+    def test_third_row_all_on(self):
+        for hours in range(4, 24, 5):
+            self.assertEqual('RRRR', kata.third_row(hours))
+
 if __name__ == '__main__':
     unittest.main()
