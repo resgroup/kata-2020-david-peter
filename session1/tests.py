@@ -1,35 +1,27 @@
 import unittest
 import kata
+from parameterized import parameterized
 
 class KataTests(unittest.TestCase):
 
-    def test_first_row_even(self):
-        for seconds in range(0, 60, 2):
-            self.assertEqual('Y', kata.first_row(seconds))
+    @parameterized.expand([
+        ['O', 1],
+        ['Y', 0]
+    ])
+    def test_first_row(self, expectedOutput, startRange):
+        for seconds in range(startRange, 60, 2):
+            self.assertEqual(expectedOutput, kata.first_row(seconds))
 
-    def test_first_row_odd(self):
-        for seconds in range(1, 60, 2):
-            self.assertEqual('O', kata.first_row(seconds))
-
-    def test_second_row_less_than_5(self):
-        for hours in range(0,5):
-            self.assertEqual('OOOO', kata.second_row(hours))
-
-    def test_second_row_between_5_and_9(self):
-        for hours in range(5,10):
-            self.assertEqual('ROOO', kata.second_row(hours))
-
-    def test_second_row_between_10_and_14(self):
-        for hours in range(10,15):
-            self.assertEqual('RROO', kata.second_row(hours))
-
-    def test_second_row_between_15_and_19(self):
-        for hours in range(15,20):
-            self.assertEqual('RRRO', kata.second_row(hours))
-
-    def test_second_row_between_20_and_23(self):
-        for hours in range(20,24):
-            self.assertEqual('RRRR', kata.second_row(hours))
+    @parameterized.expand([
+        ['OOOO', 0, 5],
+        ['ROOO', 5, 10],
+        ['RROO', 10, 15],
+        ['RRRO', 15, 20],
+        ['RRRR', 20, 24],
+    ])
+    def test_second_row(self, expectedOutput, startRange, endRange):
+        for hours in range(startRange, endRange):
+            self.assertEqual(expectedOutput, kata.second_row(hours))
 
     def test_third_row_all_off(self):
         for hours in range(0, 24, 5):
@@ -50,6 +42,38 @@ class KataTests(unittest.TestCase):
     def test_third_row_all_on(self):
         for hours in range(4, 24, 5):
             self.assertEqual('RRRR', kata.third_row(hours))
+
+    @parameterized.expand([
+        ['OOOOOOOOOOO', 0, 5],
+        ['YOOOOOOOOOO', 5, 5],
+        ['YYOOOOOOOOO', 10, 5],
+        ['YYYOOOOOOOO', 15, 5],
+        ['YYYYOOOOOOO', 20, 5],
+        ['YYYYYOOOOOO', 25, 5],
+        ['YYYYYYOOOOO', 30, 5],
+        ['YYYYYYYOOOO', 35, 5],
+        ['YYYYYYYYOOO', 40, 5],
+        ['YYYYYYYYYOO', 45, 5],
+        ['YYYYYYYYYYO', 50, 5],
+        ['YYYYYYYYYYY', 55, 5],
+    ])
+    def test_fourth_row(self, expectedOutput, startRange, rangeLength):
+        for minutes in range(startRange, startRange + rangeLength):
+            self.assertEqual(expectedOutput, kata.fourth_row(minutes))
+
+    @parameterized.expand([
+        ['OOOO', 0],
+        ['YOOO', 1],
+        ['YYOO', 2],
+        ['YYYO', 3],
+        ['YYYY', 4],
+    ])
+    def test_fifth_row(self, expectedOutput, startRange):
+        for minutes in range(startRange, 60, 5):
+            self.assertEqual(expectedOutput, kata.fifth_row(minutes))
+
+    def test_berlin_clock(self):
+        self.assertEqual('O\nRROO\nRROO\nYYYYYYYYYYY\nYOOO', kata.berlin_clock(12, 56, 1))
 
 if __name__ == '__main__':
     unittest.main()
