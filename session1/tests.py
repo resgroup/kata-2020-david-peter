@@ -66,5 +66,22 @@ class KataTests(unittest.TestCase):
     def test_berlin_clock(self):
         self.assertEqual('O\nRROO\nRROO\nYYYYYYYYYYY\nYOOO', kata.berlin_clock(12, 56, 1))
 
+    @parameterized.expand([
+        [0, 0, 0, '00:00:00'],
+        [0, 0, 1, '00:00:01'],
+        [0, 1, 0, '00:01:00'],
+        [1, 0, 0, '01:00:00'],
+        [0, 0, 59, '00:00:59'],
+        [0, 59, 0, '00:59:00'],
+        [23, 0, 0, '23:00:00'],
+        [23, 59, 59, '23:59:59'],
+        [12, 56, 1, '12:56:01'],
+    ])
+    def test_parse_time(self, expectedHours, expectedMinutes, expectedSeconds, inputString):
+        hours, minutes, seconds = kata.parse_time(inputString)
+        self.assertEqual(expectedHours, hours)
+        self.assertEqual(expectedMinutes, minutes)
+        self.assertEqual(expectedSeconds, seconds)
+
 if __name__ == '__main__':
     unittest.main()
