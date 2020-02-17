@@ -1,4 +1,5 @@
 # Session1 kata module
+import sys
 
 def format_row(length, value, on, off):
     return on * value + off * (length - value)
@@ -24,7 +25,7 @@ def berlin_clock(hours, minutes, seconds):
 def parse_time(time_str):
     return map(int, time_str.split(':'))
 
-# if __name__ == '__main__':
-#     inputString = sys.argv[0]
-#     (hours, minutes, seconds) = parse_input(inputString)
-#     print berlin_clock(hours, minutes, seconds)
+if __name__ == '__main__':
+    inputString = sys.argv[1]
+    hours, minutes, seconds = parse_time(inputString)
+    print(berlin_clock(hours, minutes, seconds))
