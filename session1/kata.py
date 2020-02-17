@@ -20,3 +20,11 @@ def fifth_row(minutes):
 
 def berlin_clock(hours, minutes, seconds):
     return f'{first_row(seconds)}\n{second_row(hours)}\n{third_row(hours)}\n{fourth_row(minutes)}\n{fifth_row(minutes)}'
+
+def parse_time(time_str):
+    return map(int, time_str.split(':'))
+
+# if __name__ == '__main__':
+#     inputString = sys.argv[0]
+#     (hours, minutes, seconds) = parse_input(inputString)
+#     print berlin_clock(hours, minutes, seconds)
